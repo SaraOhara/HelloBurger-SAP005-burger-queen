@@ -29,7 +29,7 @@ const Hall = () => {
 
     setTotal(getTotals(newObject));
     setProducts(newObject);
-
+    
   };
 
   const getTotals = (products) => {
@@ -62,7 +62,6 @@ const Hall = () => {
       </Box>
       <Menu addProductToQuote={addProductToQuote} products={products} client={client} table={table} total={total} />
       <Footer />
-
     </div>
   )
 };

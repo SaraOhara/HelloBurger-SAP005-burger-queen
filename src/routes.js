@@ -2,8 +2,8 @@ import React from 'react';
 import { Register } from './pages/authenticationPages/Register';
 import { Login }  from './pages/authenticationPages/Login';
 import Hall from './pages/Hall/Hall';
-import Kitchen from './pages/Kitchen/Kitchen';
-import reportWebVitals from './reportWebVitals';
+import { Kitchen } from './pages/Kitchen/Kitchen';
+import { reportWebVitals } from './reportWebVitals';
 import {BrowserRouter,Switch, Route} from 'react-router-dom'
 import { Home }  from './pages/authenticationPages/Home';
 import { PrivateRoute } from '../src/privateRoute.js';
