@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useStyles } from '../../components/Cards/card_structure';
 
 export const Cozinha = () => {
+      const classesCard = useStyles();
       const [pending, setPending] = useState([]);
       const [progress, setProgress] = useState([]);
       const [ready, setReady] = useState([]);
@@ -35,7 +37,7 @@ export const Cozinha = () => {
         <h1 className="CozinhaTitle">Histórico de Pedidos</h1>
           <div className="orders-received">
             <h4>Pedidos Recebidos</h4>
-            <div>
+            <div className={classesCard.root}>
               {
                 pending.length > 0 && 
                 pending.map(pendency => {

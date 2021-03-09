@@ -9,16 +9,16 @@ import { Cozinha } from '../../components/Cards/cards_kitchen.js'
 export const Kitchen = () => {
   const classes = useStyles();
 
-return (
- 
-  <div className={classes.HallConteiner}>
-     <NavBar />
-     
-      <Box className={classes.customertable}>
-      <Cozinha/>
-      </Box>
-     <Footer />
-        
-  </div>
-)
-};
+  return (
+  
+    <div className={classes.HallConteiner}>
+      <NavBar />
+      
+        <Box className={classes.customertable}>
+        <Cozinha/>
+        </Box>
+      <Footer />
+          
+    </div>
+  )
+  };
