@@ -12,6 +12,7 @@ export const Login = () => {
     root: {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
+        
       },
     },
   }));
@@ -52,15 +53,17 @@ export const Login = () => {
         console.log(json);
         const token = json.token
         const id = json.id
+        const name = json.name
+        const nameUser = localStorage.setItem("name", name)
         const tokenUser = localStorage.setItem("token", token)
         const idUser = localStorage.setItem("id", id)
-  
+          
         if(tokenUser!== null && idUser!== null && json.role === "garcom") {
           routerHall();
         }else if(tokenUser!== null && idUser!== null && json.role === "cozinheiro") {
           routerKitchen();
         }else{
-          alert("Usuario não encontrado, verifique seu Email e Senha")
+          <Alert severity="error">CCCC</Alert>
         }
       })
   };
@@ -68,7 +71,7 @@ export const Login = () => {
 
   return (
     
-    <Container maxWidth="xs" component="main" style={{ backgroundColor: '#fff', height: '80vh', marginTop: '10vh'}}>
+    <Container maxWidth="xs" component="main" style={{  marginTop: '28vh', }}>
      <Typography component="h1" variant="h4" style={{ textAlign: 'center', marginBottom: '4vh', textfontWeight: 'bolder', color: '#ce5f18', marginLeft: '0.5rem' }}>
         Hello Burger
     </Typography>
