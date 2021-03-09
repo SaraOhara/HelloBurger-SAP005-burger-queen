@@ -23,7 +23,7 @@ export const useStyles = makeStyles({
   },
 });
 
-export default function OutlinedCard() {
+export const OutlinedCard = () => {
   const classes = useStyles();
 
   return (

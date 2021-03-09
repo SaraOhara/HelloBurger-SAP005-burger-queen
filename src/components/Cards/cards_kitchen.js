@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useStyles } from '../../components/Cards/card_structure';
+import { useStyles, OutlinedCard } from '../../components/Cards/card_structure.js';
 
 export const Cozinha = () => {
       const classesCard = useStyles();
@@ -33,6 +33,7 @@ export const Cozinha = () => {
       );
 
     return (
+      <OutlinedCard >
       <div className="Cozinha">
         <h1 className="CozinhaTitle">Histórico de Pedidos</h1>
           <div className="orders-received">
@@ -85,7 +86,6 @@ export const Cozinha = () => {
               </div>
           </div>
       </div>
+    </OutlinedCard>
     );
   }
-
-//export default Kitchen;
