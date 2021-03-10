@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useStyles, OutlinedCard } from '../../components/Cards/card_structure.js';
-
+/* import { useStyles, OutlinedCard } from '../../components/Cards/card_structure.js';*/
 export const Cozinha = () => {
-      const classesCard = useStyles();
+      /*const classesCard = useStyles();*/
       const [pending, setPending] = useState([]);
       const [progress, setProgress] = useState([]);
       const [ready, setReady] = useState([]);
@@ -33,18 +32,39 @@ export const Cozinha = () => {
       );
 
     return (
-      <OutlinedCard >
+      //<OutlinedCard>
       <div className="Cozinha">
         <h1 className="CozinhaTitle">Histórico de Pedidos</h1>
           <div className="orders-received">
-            <h4>Pedidos Recebidos</h4>
-            <div className={classesCard.root}>
+            <h4>Recebidos</h4>
+          {/*<div className={classesCard.root}>*/}             
+          <div>
               {
                 pending.length > 0 && 
                 pending.map(pendency => {
                   return (
                     <div key={pendency.id}>
-                    <p>{pendency.client_name}</p>
+                      <p>Cliente: {pendency.client_name}</p>
+                      <p>Mesa: {pendency.table}</p>
+                      <p>Status: {pendency.status}</p>
+                      <p>Pedidos</p>
+                        <div>
+                          {
+                            pendency.Products.map((commands) => {
+                              return (
+                                <div key={commands.id}>
+                                  <p>Produto: {commands.name}</p>
+                                  {/*<p>Sabor: {commands.flavor}</p>*/}
+                                  <p>Quantidade: {commands.qtd}</p>
+                                  {/*<p>Complemento: {commands.complement}</p>*/}
+                                </div>
+                              )
+                            })
+                          }
+                          {/*<p>Processado em: {pendency.processedAt}</p>*/}
+                          {/*<p>Atualizado em: {pendency.updatedAt}</p>*/}
+                        </div>
+                    <button>Pedido em Preparo</button>
                     </div>
                   )
                 })
@@ -52,23 +72,44 @@ export const Cozinha = () => {
             </div>
           </div>
           <div className="orders-preparing">
-            <h4>Preparando</h4>
+            <h4>Já estão em preparo</h4>
               <div>
               {
                 progress.length > 0 && 
                 progress.map(progressing => {
                   return (
                     <div key={progressing.id}>
-                    <p>{progressing.client_name}</p>
+                      <p>Cliente: {progressing.client_name}</p>
+                      <p>Mesa: {progressing.table}</p>
+                      <p>Status: {progressing.status}</p>
+                      <p>Pedidos</p>
+                        <div>
+                          {
+                            progressing.Products.map((commands) => {
+                              return (
+                                <div key={commands.id}>
+                                  <p>Produto: {commands.name}</p>
+                                  {/*<p>Sabor: {commands.flavor}</p>*/}
+                                  <p>Quantidade: {commands.qtd}</p>
+                                  {/*<p>Complemento: {commands.complement}</p>*/}
+                                </div>
+                              )
+                            })
+                          }
+                          {/*<p>Processado em: {progressing.processedAt}</p>*/}
+                          {/*<p>Atualizado em: {progressing.updatedAt}</p>*/}
+                        </div>
+                    <button>Pedido Pronto</button>
                     </div>
                   )
                 })
               }
+
               </div>
           </div>
           <div className="orders-ready">
-            <h4>Pronto</h4>
-              <div>
+              <h4>Estão prontos </h4>
+            <div>
               {
                 ready.length > 0 && 
                 ready.map(readytoGo => {
@@ -77,15 +118,31 @@ export const Cozinha = () => {
                     <p>Cliente: {readytoGo.client_name}</p>
                     <p>Mesa: {readytoGo.table}</p>
                     <p>Status: {readytoGo.status}</p>
-{/*                     {<p>Status: {readytoGo.Products}</p>}
- */}                    <button>Atualizar Salão</button>
+                    <p>Pedidos</p>
+                    <div>
+                      {
+                        readytoGo.Products.map((commands) => {
+                          return (
+                            <div key={commands.id}>
+                              <p>Produto: {commands.name}</p>
+                              {/*<p>Sabor: {commands.flavor}</p>*/}
+                              <p>Quantidade: {commands.qtd}</p>
+                              {/*<p>Complemento: {commands.complement}</p>*/}
+                            </div>
+                          )
+                        })
+                      }
+                      {/*<p>Processado em: {readytoGo.processedAt}</p>*/}
+                      {/*<p>Atualizado em: {readytoGo.updatedAt}</p>*/}
+                    </div>
+                    <button>Atualizar Salão</button>
                     </div>
                   )
                 })
               }
-              </div>
+            </div>
           </div>
       </div>
-    </OutlinedCard>
+    //</OutlinedCard>
     );
   }
