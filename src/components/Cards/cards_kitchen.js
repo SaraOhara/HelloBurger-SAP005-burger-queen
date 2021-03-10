@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 /* import { useStyles, OutlinedCard } from '../../components/Cards/card_structure.js';*/
-export const Cozinha = () => {
+
+export const KitchenOrders = () => {
       /*const classesCard = useStyles();*/
       const [pending, setPending] = useState([]);
       const [progress, setProgress] = useState([]);
@@ -72,8 +73,8 @@ export const Cozinha = () => {
             </div>
           </div>
           <div className="orders-preparing">
-            <h4>Já estão em preparo</h4>
-              <div>
+              <h4>Já estão em preparo</h4>
+            <div>
               {
                 progress.length > 0 && 
                 progress.map(progressing => {
@@ -104,8 +105,7 @@ export const Cozinha = () => {
                   )
                 })
               }
-
-              </div>
+            </div>
           </div>
           <div className="orders-ready">
               <h4>Estão prontos </h4>
@@ -140,9 +140,9 @@ export const Cozinha = () => {
                   )
                 })
               }
+              </div>
             </div>
           </div>
-      </div>
-    //</OutlinedCard>
-    );
-  }
+        //</OutlinedCard>
+        );
+    }

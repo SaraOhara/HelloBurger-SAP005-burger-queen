@@ -4,7 +4,7 @@ import { Footer } from "../../components/Footer/Footer.js";
 import { Typography, Box } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-import { Cozinha } from '../../components/Cards/cards_kitchen.js'
+import { KitchenOrders } from '../../components/Cards/cards_kitchen.js'
 
 export const Kitchen = () => {
   const classes = useStyles();
@@ -15,7 +15,7 @@ export const Kitchen = () => {
       <NavBar />
       
         <Box className={classes.customertable}>
-        <Cozinha/>
+        <KitchenOrders/>
         </Box>
       <Footer />
           
