@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {ConvertDate, ConvertTime} from './ConvertTime';
+import Card from '@material-ui/core/Card';
 
 export function KitchenOrders() {
   const tokenUser = localStorage.getItem('token');
@@ -68,12 +69,18 @@ export function KitchenOrders() {
   };
 
   return (
-    <main className="Cozinha">
-    <h1 className="CozinhaTitle">PREPARAR</h1>
+    
+    <main style={{gap: '10vh', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginInline: '50px',  }} className="Cozinha">
+    
       {PedidosAFazer.map((pedido) => {
         return (
-          <section className="container-pending" key={pedido.id}>
+          <Card style={{ textTransform: 'uppercase',  backgroundColor: '#f5f5f5' , color: '#222', textAlign: 'center',
+          borderRadius: '3px', position: 'relative', width: '29vw',padding: '30px 31px',}} key={pedido.id}   >
             <div className="details-client">
+            <h5>Status: {pedido.status
+                  .replace('pending', 'Pendente')
+                  .replace('preparing', 'Preparando')}
+              </h5>
               <p>Pedido nº {pedido.id}</p>
               <p>Mesa: {pedido.table}</p>
               <p>Cliente: {pedido.client_name}</p>
@@ -81,12 +88,8 @@ export function KitchenOrders() {
 
             </div>
             <div className="details-status">
-              <h2>Status:</h2>
-              <h2>
-                {pedido.status
-                  .replace('pending', 'Pendente')
-                  .replace('preparing', 'Preparando')}
-              </h2>
+              
+             
             </div>
             <section className="container-order">
               {pedido.Products.map((itens, index) => (
@@ -115,7 +118,7 @@ export function KitchenOrders() {
                 FINALIZAR
               </button>
             </div>
-          </section>
+          </Card>
         );
       })}
     </main>
