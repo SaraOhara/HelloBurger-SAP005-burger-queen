@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Button from '@material-ui/core/Button';
+import CloseIcon from '@material-ui/icons/Close';
+import Card from '@material-ui/core/Card';
 
 export function HistoricoPedido() {
   const [Pedidos, setPedidos] = useState([]);
@@ -44,24 +47,24 @@ export function HistoricoPedido() {
 
   return (
     <main className="page" style={{display:  'block'}}>
-      <section className="order-history" style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginInline: '50px',  }}> 
+      <section className="order-history" style={{gap: '2vh', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginInline: '50px',  }}> 
       {Pedidos.map((pedido) => {
         return (
-          <section style={{  display: 'flex', flexDirection: 'column', width: '50%',  textAlign: 'center', margin: '0 auto'}} className="container-pending" key={pedido.id}>
+          <Card style={{ textTransform: 'uppercase',  backgroundColor: '#f5f5f5' , color: '#222', textAlign: 'center',
+          borderRadius: '3px', position: 'relative', width: '29vw',padding: '30px 31px',}}  key={pedido.id}>
             <div className="details-client">
-              <p>PedidoOOOOOOOO nº {pedido.id}</p>
-              <p>Mesa: {pedido.table}</p>
-              <p>Cliente: {pedido.client_name}</p>
-            </div>
-            <div className="details-status">
-              <h2>Status:</h2>
-              <h2>
-                {pedido.status
+            <h3 style={{color: '#cf5e18'}}>Status: {pedido.status
                   .replace('pending', 'Pendente')
                   .replace('ready', 'Pronto')
                   .replace('finished', 'Finalizado')
                   .replace('preparing', 'Preparando')}
-              </h2>
+              </h3>
+              <p>Pedido nº {pedido.id}</p>
+              <p>Mesa: {pedido.table}</p>
+              <p>Cliente: {pedido.client_name}</p>
+            </div>
+            <div className="details-status">
+              
             </div>
             <section className="container-order scroll">
               {pedido.Products.map((itens, index) => (
@@ -76,15 +79,12 @@ export function HistoricoPedido() {
               ))}
             </section>
             <div>
-              <button className="btn-delete">
-                <img
-                  className="icon-trash"
-                   alt="icon-trash"
-                  onClick={() => handleExcluir(pedido)}
-                />
-              </button>
+              <Button className="btn-delete" style={{ color: '#ffff'}}
+                  onClick={() => handleExcluir(pedido)}>
+                 <CloseIcon style={{ color: 'red' }} />
+              </Button>
             </div>
-          </section>
+          </Card>
         );
       })}
    </section>
