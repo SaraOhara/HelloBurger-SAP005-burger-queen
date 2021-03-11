@@ -4,7 +4,7 @@ import { Footer } from "../../components/Footer/Footer.js";
 import { Typography, Box } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-import { ListaPedidosProntos } from '../../components/Cards/ListaPedidosProntos'
+import { ListaPedidosProntos } from '../../components/Cards/ReadyList'
 
 export const PedidosProntos = () => {
   const classes = useStyles();

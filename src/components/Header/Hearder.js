@@ -129,9 +129,9 @@ export function SubToolbar2 (props) {
   const classes = useStyles();
   const history = useHistory();
   const routerHall = () => {
-    history.push('/Hall')  }
+    history.push('/Kitchen')  }
   const routerKitchen = () => {
-    history.push('/Kitchen')
+    history.push('/historicopedidos')
   }
 
   const handleLogout = () => {

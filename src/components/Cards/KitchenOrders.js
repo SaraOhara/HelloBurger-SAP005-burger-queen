@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-
+import {ConvertDate, ConvertTime} from './ConvertTime';
 
 export function KitchenOrders() {
   const tokenUser = localStorage.getItem('token');
@@ -29,11 +28,8 @@ export function KitchenOrders() {
     listaPedidos();
   }, []);
 
-  const handleAtualizar = () => {
-    listaPedidos();
-  };
-
-  const handlePreparar = (pedido, e) => {
+  
+    const handlePreparar = (pedido, e) => {
     const url = 'https://lab-api-bq.herokuapp.com/orders/';
     const id = pedido.id;
     const status = { status: 'preparing' };
@@ -72,11 +68,8 @@ export function KitchenOrders() {
   };
 
   return (
-    <main className="page">
-      <button className="btn-refresh" onClick={() => handleAtualizar()}>
-        <img alt="icone-atualizar"  />
-        Atualizar Pedidos
-      </button>
+    <main className="Cozinha">
+    <h1 className="CozinhaTitle">PREPARAR</h1>
       {PedidosAFazer.map((pedido) => {
         return (
           <section className="container-pending" key={pedido.id}>
@@ -84,6 +77,8 @@ export function KitchenOrders() {
               <p>Pedido nº {pedido.id}</p>
               <p>Mesa: {pedido.table}</p>
               <p>Cliente: {pedido.client_name}</p>
+              <p  className="date">Data: {ConvertDate(pedido.createdAt)} {ConvertTime(pedido.createdAt)}</p>
+
             </div>
             <div className="details-status">
               <h2>Status:</h2>
@@ -97,6 +92,7 @@ export function KitchenOrders() {
               {pedido.Products.map((itens, index) => (
                 <div className="details-order-pending" key={index}>
                   <p>
+                    
                     {' '}
                     {itens.qtd} {itens.name}
                   </p>

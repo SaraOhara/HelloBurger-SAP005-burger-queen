@@ -22,10 +22,7 @@ export function HistoricoPedido() {
     listaPedidos(tokenUser);
   }, [tokenUser]);
 
-  const handleAtualizar = () => {
-    listaPedidos(tokenUser);
-  };
-
+ 
   const handleExcluir = (pedido) => {
     const url = 'https://lab-api-bq.herokuapp.com/orders/';
     const id = pedido.id;
@@ -46,16 +43,13 @@ export function HistoricoPedido() {
   };
 
   return (
-    <main className="page">
-      <button className="btn-refresh" onClick={() => handleAtualizar()}>
-        <img alt="icone-atualizar"/>
-        Atualizar Pedidos
-      </button>
+    <main className="page" style={{display:  'block',}    }>
+      <section> 
       {Pedidos.map((pedido) => {
         return (
-          <section className="container-pending" key={pedido.id}>
+          <section style={{  display: 'flex', flexDirection: 'column', width: '50%',  textAlign: 'center', margin: '0 auto'}} className="container-pending" key={pedido.id}>
             <div className="details-client">
-              <p>Pedido nº {pedido.id}</p>
+              <p>PedidoOOOOOOOO nº {pedido.id}</p>
               <p>Mesa: {pedido.table}</p>
               <p>Cliente: {pedido.client_name}</p>
             </div>
@@ -93,6 +87,7 @@ export function HistoricoPedido() {
           </section>
         );
       })}
+   </section>
     </main>
   );
 }

@@ -4,7 +4,7 @@ import { Footer } from "../../components/Footer/Footer.js";
 import { Typography, Box } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-import { HistoricoPedido } from '../../components/Cards/HistoricoP'
+import { HistoricoPedido } from '../../components/Cards/GeneralHistory'
 
 export const HistoricoPedidos = () => {
   const classes = useStyles();
