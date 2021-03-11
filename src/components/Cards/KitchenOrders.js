@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {ConvertDate, ConvertTime} from './ConvertTime';
 import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
 
 export function KitchenOrders() {
   const tokenUser = localStorage.getItem('token');
@@ -77,9 +78,9 @@ export function KitchenOrders() {
           <Card style={{ textTransform: 'uppercase',  backgroundColor: '#f5f5f5' , color: '#222', textAlign: 'center',
           borderRadius: '3px', position: 'relative', width: '29vw',padding: '30px 31px',}} key={pedido.id}   >
             <div className="details-client">
-            <h5>Status: {pedido.status
+            <h5 style={{color: '#cf5e18'}} >Status: {pedido.status 
                   .replace('pending', 'Pendente')
-                  .replace('preparing', 'Preparando')}
+                  .replace('preparing', 'Preparando...')}
               </h5>
               <p>Pedido nº {pedido.id}</p>
               <p>Mesa: {pedido.table}</p>
@@ -104,19 +105,19 @@ export function KitchenOrders() {
                 </div>
               ))}
             </section>
-            <div>
-              <button
+            <div style={{ paddingLeft: '5px'}}>
+              <Button  style={{backgroundColor: '#f5a970', color: '#fff'}}
                 className="btn-preparar"
                 onClick={(e) => handlePreparar(pedido, e)}
               >
                 PREPARAR
-              </button>
-              <button
+              </Button>
+              <Button style={{backgroundColor: '#cf5e18', color: '#fff'}}
                 className="btn-finalizar"
                 onClick={() => handleFinalizar(pedido)}
               >
                 FINALIZAR
-              </button>
+              </Button>
             </div>
           </Card>
         );
