@@ -15,7 +15,7 @@ export const Kitchen = () => {
       <NavBar />
       
         <Box className={classes.customertable}>
-        <KitchenOrders/>
+        <KitchenOrders />
         </Box>
       <Footer />
           

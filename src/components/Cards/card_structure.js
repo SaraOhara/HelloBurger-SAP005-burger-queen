@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -29,7 +29,7 @@ export const OutlinedCard = () => {
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Typography variant="h5" component="h3">
+       {/* <Typography variant="h5" component="h3">
           Cliente: Jussara
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
@@ -42,12 +42,13 @@ export const OutlinedCard = () => {
           <br />
           Mesa: 1 
           Chamar em cada item, as informações que são precisar, acessando objetos.
-          */}
-        </Typography>
-      </CardContent>
+         
+        </Typography>*/
+    /*       </CardContent>
       <CardActions>
-        <Button size="large">Enviar para preparo</Button>
+        <Button size="large">Enviar para preparo</Button>*
       </CardActions>
     </Card>
   );
 }
+ */ 

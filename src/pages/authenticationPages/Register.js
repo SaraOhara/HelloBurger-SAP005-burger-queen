@@ -13,7 +13,6 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import '../../index.css';
 
 
-
 export const Register = () => {
   const useStyles = makeStyles((theme) => ({
     root: {
