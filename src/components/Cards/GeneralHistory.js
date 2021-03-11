@@ -43,8 +43,8 @@ export function HistoricoPedido() {
   };
 
   return (
-    <main className="page" style={{display:  'block'}}>
-      <section className="order-history" style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginInline: '50px',  }}> 
+    <main className="page" style={{display:  'block',}    }>
+      <section> 
       {Pedidos.map((pedido) => {
         return (
           <section style={{  display: 'flex', flexDirection: 'column', width: '50%',  textAlign: 'center', margin: '0 auto'}} className="container-pending" key={pedido.id}>
