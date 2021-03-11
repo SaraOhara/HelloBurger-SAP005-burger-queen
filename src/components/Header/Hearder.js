@@ -93,7 +93,7 @@ export function SubToolbar (props) {
   const routerHall = () => {
     history.push('/Hall')  }
   const routerKitchen = () => {
-    history.push('/Kitchen')
+    history.push('/PedidosProntos')
   }
 
   const handleLogout = () => {
@@ -106,7 +106,7 @@ export function SubToolbar (props) {
     <Box centered className={classes.toolbar2}>
     <Tabs  centered style={{ color: '#cf5e18' , width: '100%'}} >
       <LinkTab onClick={() => routerHall()} label="Home" icon={<h4><AiFillHome style={{ color: '#cf5e18' }} /></h4>} href="Hall" />
-      <LinkTab onClick={() => routerKitchen()} label="Pedidos" icon={<h4><AiFillSnippets style={{ color: '#cf5e18' }} /></h4>} href="Kitchen" />
+      <LinkTab onClick={() => routerKitchen()} label="Pedidos Prontos" icon={<h4><AiFillSnippets style={{ color: '#cf5e18' }} /></h4>} href="PedidosProntos" />
       <LinkTab onClick={() => handleLogout()} label="Sair" icon={<h4><FiLogOut style={{ color: '#cf5e18',}} /></h4>} />
     </Tabs>
     </Box>
@@ -125,3 +125,28 @@ function LinkTab(props) {
 }
 
 
+export function SubToolbar2 (props) {
+  const classes = useStyles();
+  const history = useHistory();
+  const routerHall = () => {
+    history.push('/Hall')  }
+  const routerKitchen = () => {
+    history.push('/Kitchen')
+  }
+
+  const handleLogout = () => {
+    if (localStorage.getItem('token')) {
+      localStorage.clear();
+      return history.push('/')
+    }
+  }
+  return (
+    <Box centered className={classes.toolbar2}>
+    <Tabs  centered style={{ color: '#cf5e18' , width: '100%'}} >
+      <LinkTab onClick={() => routerHall()} label="Pedidos Pendentes" icon={<h4><AiFillHome style={{ color: '#cf5e18' }} /></h4>} href="Kitchen" />
+      <LinkTab onClick={() => routerKitchen()} label="Histórico Pedidos" icon={<h4><AiFillSnippets style={{ color: '#cf5e18' }} /></h4>} href="historicopedidos" />
+      <LinkTab onClick={() => handleLogout()} label="Sair" icon={<h4><FiLogOut style={{ color: '#cf5e18',}} /></h4>} />
+    </Tabs>
+    </Box>
+  )
+};

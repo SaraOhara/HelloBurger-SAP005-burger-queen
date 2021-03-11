@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 
-
-export function KitchenOrders() {
+export const ListaPedidosProntos = () => {
   const tokenUser = localStorage.getItem('token');
-  const [PedidosAFazer, setPedidosAFazer] = useState([]);
+  const [PedidosProntos, setPedidosProntos] = useState([]);
 
   const listaPedidos = () => {
     fetch('https://lab-api-bq.herokuapp.com/orders', {
@@ -15,47 +14,27 @@ export function KitchenOrders() {
       },
     })
       .then((response) => response.json())
-      .then((pedidos) => {
-        const pedidosPendentes = pedidos.filter(
-          (itens) =>
-            itens.status.includes('preparing') ||
-            itens.status.includes('pending')
+      .then((data) => {
+        const products = data;
+        const pedidosEntregar = products.filter((itens) =>
+          itens.status.includes('ready')
         );
-        setPedidosAFazer(pedidosPendentes);
+        setPedidosProntos(pedidosEntregar);
       });
+  };
+
+  const handleAtualizar = () => {
+    listaPedidos();
   };
 
   useEffect(() => {
     listaPedidos();
   }, []);
 
-  const handleAtualizar = () => {
-    listaPedidos();
-  };
-
-  const handlePreparar = (pedido, e) => {
+  const handleEntregar = (pedido) => {
     const url = 'https://lab-api-bq.herokuapp.com/orders/';
     const id = pedido.id;
-    const status = { status: 'preparing' };
-
-    fetch(url + id, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `${tokenUser}`,
-      },
-      body: JSON.stringify(status),
-    }).then((response) => {
-      response.json().then(() => {
-        listaPedidos();
-      });
-    });
-  };
-
-  const handleFinalizar = (pedido) => {
-    const url = 'https://lab-api-bq.herokuapp.com/orders/';
-    const id = pedido.id;
-    const status = { status: 'ready' };
+    const status = { status: 'finished' };
 
     fetch(url + id, {
       method: 'PUT',
@@ -74,10 +53,14 @@ export function KitchenOrders() {
   return (
     <main className="page">
       <button className="btn-refresh" onClick={() => handleAtualizar()}>
-        <img alt="icone-atualizar"  />
+        <img alt="icone-atualizar" />
         Atualizar Pedidos
       </button>
-      {PedidosAFazer.map((pedido) => {
+      {PedidosProntos.map((pedido) => {
+        const dataUpdated = new Date(pedido.updatedAt);
+        const dataCreated = new Date(pedido.createdAt);
+        const diferença = Math.abs(dataUpdated) - dataCreated;
+        const minutes = Math.floor(diferença / 1000 / 60);
         return (
           <section className="container-pending" key={pedido.id}>
             <div className="details-client">
@@ -86,14 +69,10 @@ export function KitchenOrders() {
               <p>Cliente: {pedido.client_name}</p>
             </div>
             <div className="details-status">
-              <h2>Status:</h2>
-              <h2>
-                {pedido.status
-                  .replace('pending', 'Pendente')
-                  .replace('preparing', 'Preparando')}
-              </h2>
+              <h2>Preparo: </h2>
+              <h2>{minutes} min</h2>
             </div>
-            <section className="container-order">
+            <section className="container-order scroll">
               {pedido.Products.map((itens, index) => (
                 <div className="details-order-pending" key={index}>
                   <p>
@@ -107,16 +86,10 @@ export function KitchenOrders() {
             </section>
             <div>
               <button
-                className="btn-preparar"
-                onClick={(e) => handlePreparar(pedido, e)}
-              >
-                PREPARAR
-              </button>
-              <button
                 className="btn-finalizar"
-                onClick={() => handleFinalizar(pedido)}
+                onClick={() => handleEntregar(pedido)}
               >
-                FINALIZAR
+                ENTREGAR
               </button>
             </div>
           </section>
@@ -124,5 +97,5 @@ export function KitchenOrders() {
       })}
     </main>
   );
-}
+};
 

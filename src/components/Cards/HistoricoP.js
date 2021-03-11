@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-
-
-export function KitchenOrders() {
+export function HistoricoPedido() {
+  const [Pedidos, setPedidos] = useState([]);
   const tokenUser = localStorage.getItem('token');
-  const [PedidosAFazer, setPedidosAFazer] = useState([]);
 
-  const listaPedidos = () => {
+  const listaPedidos = (tokenUser) => {
     fetch('https://lab-api-bq.herokuapp.com/orders', {
       method: 'GET',
       headers: {
@@ -16,49 +14,25 @@ export function KitchenOrders() {
     })
       .then((response) => response.json())
       .then((pedidos) => {
-        const pedidosPendentes = pedidos.filter(
-          (itens) =>
-            itens.status.includes('preparing') ||
-            itens.status.includes('pending')
-        );
-        setPedidosAFazer(pedidosPendentes);
+        setPedidos(pedidos);
       });
   };
 
   useEffect(() => {
-    listaPedidos();
-  }, []);
+    listaPedidos(tokenUser);
+  }, [tokenUser]);
 
   const handleAtualizar = () => {
-    listaPedidos();
+    listaPedidos(tokenUser);
   };
 
-  const handlePreparar = (pedido, e) => {
-    const url = 'https://lab-api-bq.herokuapp.com/orders/';
-    const id = pedido.id;
-    const status = { status: 'preparing' };
-
-    fetch(url + id, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `${tokenUser}`,
-      },
-      body: JSON.stringify(status),
-    }).then((response) => {
-      response.json().then(() => {
-        listaPedidos();
-      });
-    });
-  };
-
-  const handleFinalizar = (pedido) => {
+  const handleExcluir = (pedido) => {
     const url = 'https://lab-api-bq.herokuapp.com/orders/';
     const id = pedido.id;
     const status = { status: 'ready' };
 
     fetch(url + id, {
-      method: 'PUT',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `${tokenUser}`,
@@ -66,7 +40,7 @@ export function KitchenOrders() {
       body: JSON.stringify(status),
     }).then((response) => {
       response.json().then(() => {
-        listaPedidos();
+        listaPedidos(tokenUser);
       });
     });
   };
@@ -74,10 +48,10 @@ export function KitchenOrders() {
   return (
     <main className="page">
       <button className="btn-refresh" onClick={() => handleAtualizar()}>
-        <img alt="icone-atualizar"  />
+        <img alt="icone-atualizar"/>
         Atualizar Pedidos
       </button>
-      {PedidosAFazer.map((pedido) => {
+      {Pedidos.map((pedido) => {
         return (
           <section className="container-pending" key={pedido.id}>
             <div className="details-client">
@@ -90,10 +64,12 @@ export function KitchenOrders() {
               <h2>
                 {pedido.status
                   .replace('pending', 'Pendente')
+                  .replace('ready', 'Pronto')
+                  .replace('finished', 'Finalizado')
                   .replace('preparing', 'Preparando')}
               </h2>
             </div>
-            <section className="container-order">
+            <section className="container-order scroll">
               {pedido.Products.map((itens, index) => (
                 <div className="details-order-pending" key={index}>
                   <p>
@@ -106,17 +82,12 @@ export function KitchenOrders() {
               ))}
             </section>
             <div>
-              <button
-                className="btn-preparar"
-                onClick={(e) => handlePreparar(pedido, e)}
-              >
-                PREPARAR
-              </button>
-              <button
-                className="btn-finalizar"
-                onClick={() => handleFinalizar(pedido)}
-              >
-                FINALIZAR
+              <button className="btn-delete">
+                <img
+                  className="icon-trash"
+                   alt="icon-trash"
+                  onClick={() => handleExcluir(pedido)}
+                />
               </button>
             </div>
           </section>
