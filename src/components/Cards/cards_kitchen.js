@@ -7,6 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 export const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    paddingBotton: "500px",
+    displayFlex: "flex",
+    flexDirection: "column",
+    
   },
   bullet: {
     display: 'inline-block',
@@ -20,8 +24,6 @@ export const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-
-
 
 
 export const KitchenOrders = () => {
@@ -62,7 +64,7 @@ export const KitchenOrders = () => {
             <h3>Recebidos</h3>
             {/*<div className={classesCard.root}>*/}        
             <Card className={classes.root} variant="outlined">
-            <CardContent>>
+            <CardContent>
               {
                 pending.length > 0 && 
                 pending.map(pendency => {

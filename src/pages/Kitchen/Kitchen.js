@@ -1,5 +1,5 @@
 import React, {  useState } from 'react';
-import {  NavBar, useStyles } from "../../components/Header/Hearder.js";
+import {  NavBar, useStyles, SubToolbar } from "../../components/Header/Hearder.js";
 import { Footer } from "../../components/Footer/Footer.js";
 import { Typography, Box } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
@@ -13,7 +13,7 @@ export const Kitchen = () => {
   
     <div className={classes.HallConteiner}>
       <NavBar />
-      
+      <SubToolbar />
         <Box className={classes.customertable}>
         <KitchenOrders />
         </Box>
