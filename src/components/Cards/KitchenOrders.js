@@ -106,13 +106,13 @@ export function KitchenOrders() {
               ))}
             </section>
             <div style={{ paddingLeft: '5px'}}>
-              <Button  style={{backgroundColor: '#f5a970', color: '#fff'}}
+              <Button  style={{backgroundColor: '#f5a970', color: '#ffff'}}
                 className="btn-preparar"
                 onClick={(e) => handlePreparar(pedido, e)}
               >
                 PREPARAR
               </Button>
-              <Button style={{backgroundColor: '#cf5e18', color: '#fff'}}
+              <Button style={{backgroundColor: '#cf5e18', color: '#ffff'}}
                 className="btn-finalizar"
                 onClick={() => handleFinalizar(pedido)}
               >
